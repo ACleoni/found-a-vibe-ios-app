@@ -41,7 +41,7 @@ struct TextFieldView: View {
     }
     
     var body: some View {
-        HStack(alignment: .top) {
+        HStack(alignment: .center) {
             Image(systemName: iconName)
                 .resizable()
                 .scaledToFit()
@@ -54,7 +54,7 @@ struct TextFieldView: View {
                 .stroke(Color.gray, lineWidth: 1)
         )
         .background(Color.white)
-        .clipShape(.rect(cornerRadius: 8))
+        .clipShape(RoundedRectangle(cornerRadius: 8))
     }
 }
 
