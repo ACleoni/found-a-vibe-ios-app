@@ -7,8 +7,6 @@
 
 import SwiftUI
 
-import SwiftUI
-
 struct TextFieldView: View {
     @Binding var input: String
     @Binding var isSecure: Bool

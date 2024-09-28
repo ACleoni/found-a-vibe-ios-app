@@ -14,7 +14,6 @@ struct SignIn: View {
     @State private var isSecure = true
     
     @FocusState private var emailFieldIsFocused: Bool
-    @FocusState private var passwordFieldIsFocused: Bool
     
     var body: some View {
         VStack {
@@ -71,13 +70,11 @@ struct SignIn: View {
                     )
                     .textInputAutocapitalization(.never)
                     .disableAutocorrection(true)
-                    .focused($passwordFieldIsFocused)
                     .overlay(alignment: .trailing) {
                         Image(systemName: isSecure ? "eye.slash" : "eye")
                             .resizable()
                             .frame(width: 20, height: 16)
                             .onTapGesture {
-                                passwordFieldIsFocused = true
                                 isSecure.toggle()
                             }
                             .padding()
