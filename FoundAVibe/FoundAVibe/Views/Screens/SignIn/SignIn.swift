@@ -21,7 +21,7 @@ struct SignIn: View {
                 Image("FAVBrandColor")
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 302)
+                    .frame(maxWidth: 302)
                 Text("Find Local Events And People To Vibe With In Realtime")
                     .font(.abeezeeItalic(size: 14))
                     .lineSpacing(6)
