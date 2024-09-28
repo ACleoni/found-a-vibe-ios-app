@@ -32,13 +32,13 @@ struct WelcomeTwo: View {
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
             HStack {
-                NavigationLink(destination: EmptyView()) {
+                NavigationLink(destination: SignIn()) {
                     Text("Skip")
                         .font(.abeezeeItalic(size: 14))
                         .foregroundStyle(.white)
                 }
                 Spacer()
-                NavigationLink(destination: EmptyView()) {
+                NavigationLink(destination: SignIn()) {
                     Text("Next")
                         .font(.abeezeeItalic(size: 14))
                         .frame(width: 80, height: 34)

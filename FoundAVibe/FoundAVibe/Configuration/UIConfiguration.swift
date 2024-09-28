@@ -16,3 +16,7 @@ extension Font {
         Font.custom("ABeeZee-Italic", size: size)
     }
 }
+
+//extension Color {
+//    static let midnightBlue = Color("MidnightBlue")
+//}
