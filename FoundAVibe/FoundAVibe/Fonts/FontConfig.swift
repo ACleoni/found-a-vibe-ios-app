@@ -1,8 +1,8 @@
 //
-//  UIConfiguration.swift
+//  FontConfig.swift
 //  FoundAVibe
 //
-//  Created by Alexander Cleoni on 9/24/24.
+//  Created by Alexander Cleoni on 10/1/24.
 //
 
 import SwiftUI
@@ -16,7 +16,3 @@ extension Font {
         Font.custom("ABeeZee-Italic", size: size)
     }
 }
-
-//extension Color {
-//    static let midnightBlue = Color("MidnightBlue")
-//}
