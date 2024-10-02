@@ -6,12 +6,29 @@
 //
 
 import SwiftUI
+import Firebase
 
 @main
 struct FoundAVibeApp: App {
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    @State private var showAlert: Bool = false
+    
     var body: some Scene {
         WindowGroup {
-                ContentView()
+            ContentView()
+                .onAppear {
+                    if FirebaseApp.app() == nil {
+                        showAlert.toggle()
+                    }
+                }
+                .alert(isPresented: $showAlert) {
+                    let message = "Please try again later. If the problem persists, please contact \(AppConstants.supportEmail)"
+                    return Alert(
+                        title: Text("Failed to Load Database Configuration"),
+                        message: Text(message),
+                        dismissButton: .default(Text("OK"))
+                    )
+                }
         }
     }
 }
