@@ -10,3 +10,4 @@ All notable changes to this project will be documented in this file.
 - Added CHANGELOG.md to the repository ([#2](https://github.com/ACleoni/found-a-vibe-ios-app/pull/2))
 - Added two new Weclome Screens to give new users information about the application ([#3](https://github.com/ACleoni/found-a-vibe-ios-app/pull/3))
 - Added the Login Screen with email/password input, social login options, and a custom Login Button ([#4](https://github.com/ACleoni/found-a-vibe-ios-app/pull/4))
+- Added Firebase into the app with environment-specific configurations and added user alerts for configuration failures. ([#5](https://github.com/ACleoni/found-a-vibe-ios-app/pull/5))
