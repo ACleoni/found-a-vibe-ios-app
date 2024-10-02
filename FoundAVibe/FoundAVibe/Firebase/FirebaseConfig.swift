@@ -16,7 +16,7 @@ enum FirebaseConfigError: Error {
     case optionsFailedFromPlistPath(plistPath: String)
 }
 
-class FirebaseConfig {
+public class FirebaseConfig {
     static public func configure() throws {
         let environment: Environment = {
             #if DEBUG

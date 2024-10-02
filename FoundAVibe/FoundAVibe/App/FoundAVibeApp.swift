@@ -22,7 +22,7 @@ struct FoundAVibeApp: App {
                     }
                 }
                 .alert(isPresented: $showAlert) {
-                    let message = "Please try again later. If the problem persists, please contact support@foundavibe.com."
+                    let message = "Please try again later. If the problem persists, please contact \(AppConstants.supportEmail)"
                     return Alert(
                         title: Text("Failed to Load Database Configuration"),
                         message: Text(message),
