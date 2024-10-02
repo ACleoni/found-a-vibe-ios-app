@@ -4,8 +4,6 @@
 //
 //  Created by Alexander Cleoni on 9/28/24.
 //
-
-import Foundation
 import Firebase
 
 enum Environment {
@@ -13,8 +11,13 @@ enum Environment {
     case production
 }
 
+enum FirebaseConfigError: Error {
+    case missingPlistFile(fileName: String)
+    case optionsFailedFromPlistPath(plistPath: String)
+}
+
 class FirebaseConfig {
-    static public func configure() {
+    static public func configure() throws {
         let environment: Environment = {
             #if DEBUG
             return .development
@@ -32,14 +35,13 @@ class FirebaseConfig {
         }
         
         guard let plistPath = Bundle.main.path(forResource: plistFileName, ofType: "plist") else {
-            fatalError("Could not find plist file name with \(plistFileName).")
+            throw FirebaseConfigError.missingPlistFile(fileName: plistFileName)
         }
         
         guard let options = FirebaseOptions(contentsOfFile: plistPath) else {
-            fatalError("Could not load Firebase options from \(plistPath).")
+            throw FirebaseConfigError.optionsFailedFromPlistPath(plistPath: plistPath)
         }
         
         FirebaseApp.configure(options: options)
-        print("Firebase successfully configured for \(environment) environment.")
     }
 }
