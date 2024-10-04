@@ -17,7 +17,7 @@ struct Status {
     }
     
     static var signInSuccessStatus: Status {
-        return Status(title: "Successful", message: "Your account has been logged in successfully")
+        return Status(title: "Successful", message: "Your account has been logged in successfully.")
     }
     
     static var errorStatus: Status {

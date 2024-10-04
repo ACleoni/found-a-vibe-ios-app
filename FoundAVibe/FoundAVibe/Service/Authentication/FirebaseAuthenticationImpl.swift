@@ -9,15 +9,18 @@ import Combine
 import FirebaseAuth
 
 class FirebaseAuthenticationImpl: AuthenticationService {
-    func signIn(email: String, password: String) -> Future<User?, Never> {
+    func signIn(withCredentials credentials: UserCredentials) -> Future<User?, Never> {
         return Future<User?, Never> { promise in
-            Auth.auth().signIn(withEmail: email, password: password) {(authResult, _) in
+            Auth.auth().signIn(withEmail: credentials.email, password: credentials.password) {(authResult, _) in
                 guard let id = authResult?.user.providerID,
-                    let email = authResult?.user.email else {
-                        promise(.success(nil))
-                        return
+                      let email = authResult?.user.email else {
+                    promise(.success(nil))
+                    return
                 }
-                let user = User(id: id, email: email, photoUrl: "")
+                var user = User(id: id, email: email)
+                if let photoURL = authResult?.user.photoURL?.absoluteString {
+                    user.photoUrl = photoURL
+                }
                 promise(.success(user))
             }
         }

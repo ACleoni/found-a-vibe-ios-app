@@ -9,5 +9,5 @@ import Foundation
 import Combine
 
 protocol AuthenticationService {
-    func signIn(email: String, password: String) -> Future<User?, Never>
+    func signIn(withCredentials credentials: UserCredentials) -> Future<User?, Never>
 }

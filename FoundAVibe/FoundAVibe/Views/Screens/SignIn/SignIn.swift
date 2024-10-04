@@ -18,9 +18,7 @@ struct SignIn: View {
     @FocusState private var emailFieldIsFocused: Bool
     
     private func handleSubmit() {
-        if email != "" && password != "" {
-            session.signIn(email: email, password: password)
-        }
+        session.signIn(email: email, password: password)
     }
     
     var body: some View {

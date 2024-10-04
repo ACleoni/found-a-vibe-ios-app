@@ -7,13 +7,17 @@
 
 import Combine
 import Foundation
+import os
 
 
 
 @MainActor
 class Session: ObservableObject {
+    let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "FoundAVibe", category: "Session")
+    
     @Published var user: User?
     @Published var status: Status?
+    @Published var error: Error?
     
     private var cancellableBag = Set<AnyCancellable>()
     private let authenticationService: AuthenticationService
@@ -23,12 +27,21 @@ class Session: ObservableObject {
     }
     
     public func signIn(email: String, password: String) {
-        authenticationService.signIn(email: email, password: password)
-            .receive(on: RunLoop.main)
-            .map(resultMapper)
-            .replaceError(with: Status.errorStatus)
-            .assign(to: \.status, on: self)
-            .store(in: &cancellableBag)
+        do {
+            let credentials = try UserCredentials(email: email, password: password)
+            authenticationService.signIn(withCredentials: credentials)
+                .receive(on: RunLoop.main)
+                .map(resultMapper)
+                .replaceError(with: Status.errorStatus)
+                .assign(to: \.status, on: self)
+                .store(in: &cancellableBag)
+        } catch let error as ValidationError {
+            logger.error("Failed to authenticate the user: \(error.localizedDescription)")
+            self.error = error
+        } catch {
+            logger.error("An unknown error has occured: \(error)")
+            self.error = error
+        }
     }
 }
 

@@ -10,5 +10,5 @@ import Foundation
 struct User: Equatable {
     let id: String
     let email: String
-    let photoUrl: String
+    var photoUrl: String? = nil
 }
