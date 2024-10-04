@@ -8,13 +8,20 @@
 import SwiftUI
 
 struct ContentView: View {
+    @EnvironmentObject var session: Session
+    
     var body: some View {
-        NavigationStack {
-            WelcomeOne()
-        }
+        if session.user != nil {
+                MainView()
+            } else {
+                NavigationStack {
+                    WelcomeOne()
+                }
+            }
     }
 }
 
 #Preview {
     ContentView()
+        .environmentObject(Session(authenticationService: FirebaseAuthenticationImpl()))
 }

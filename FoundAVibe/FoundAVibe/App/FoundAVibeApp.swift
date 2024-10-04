@@ -29,6 +29,7 @@ struct FoundAVibeApp: App {
                         dismissButton: .default(Text("OK"))
                     )
                 }
+                .environmentObject(Session(authenticationService: FirebaseAuthenticationImpl()))
         }
     }
 }

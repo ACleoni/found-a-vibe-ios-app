@@ -8,12 +8,20 @@
 import SwiftUI
 
 struct SignIn: View {
+    @EnvironmentObject var session: Session
+    
     @State private var email: String = ""
     @State private var password: String = ""
     @State private var rememberMe = false
     @State private var isSecure = true
     
     @FocusState private var emailFieldIsFocused: Bool
+    
+    private func handleSubmit() {
+        if email != "" && password != "" {
+            session.signIn(email: email, password: password)
+        }
+    }
     
     var body: some View {
         VStack {
@@ -97,7 +105,7 @@ struct SignIn: View {
                     .padding(.vertical, 6)
                     Button(
                         action: {
-                            print("Skip Button Pressed")
+                            handleSubmit()
                         },
                         label: {
                             Text("Login")
